@@ -1,0 +1,36 @@
+﻿{% load static %}
+<html lang="ru">
+
+<head>
+    <meta charset="chcp 1251">
+    <title>Пенсионный калькулятор</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">     
+    <link rel="stylesheet" href="{% static 'css/pcalc.css' %}">     
+</head>
+
+<body>
+   
+<header>      
+        <h1 class="hres" > Пенсионный калькулятор </h1>
+</header>      
+ 
+<section class = "par">
+
+   <div>  {{mess}} </div>
+   
+  {% if mess2 %}
+   <div>   {{mess2}} </div>
+   <div> Вы набрали {{pb}} пенсионных баллов </div>
+   <div> Из них {{db}} пенсионных баллов за нетрудовые социально-значимые периоды </div>
+  
+   <div> Вы набрали {{stag}} лет трудового/страхового стажа </div>
+   
+  <div> {{mess3}} </div>
+ 
+  <div>  Ваша пенсия составит {{p}} рублей </div>
+  {% endif %}
+</section>
+
+</body>
+</html>

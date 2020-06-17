@@ -1,0 +1,102 @@
+body {
+  background: #cfc;
+
+}
+
+header {
+ padding: 40px;
+ background: #7b7;
+ border-radius: 6px;
+ border: 12px solid #0a0;
+
+}
+
+.pic{
+display: block;
+float: left;
+width: 15%;
+}
+
+h4{
+font-family: 'Lobster', cursive;
+font-size: 24pt;
+color:#800;
+margin-top: 12px;
+text-align: center;
+}
+
+.hform{
+display: block;
+float: left;
+width: 85%;
+}
+
+.hrez{
+font-size: 24pt;
+width: 100%;
+}
+
+h1{
+font-family: 'Lobster', cursive;
+font-size: 48pt;
+text-align: center;
+}
+
+header,
+section,
+aside,
+footer {
+  margin: 2px 0 0 2px;
+}
+
+.text{
+color: #700;
+padding-bottom: 12px;
+font-size: 12pt;
+}
+
+.btn{
+   background-color: #8c8;
+    border: none;
+    color: #050;
+    padding: 25px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 36px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 25px;
+    box-shadow: 0 9px #999;
+    width: 100%;
+}
+
+.par{
+font: 18pt strong Helvetica Cambria, Sans-Serif;
+text-align: center;
+padding-bottom: 8px;
+padding-top: 8px;
+}
+
+.lab{
+font: 14pt strong Helvetica Cambria, Sans-Serif;
+text-align: left;
+}
+
+.data_s {
+  background: #88f;
+  border-radius: 6px;
+  border: 6px solid #aa8;
+  text-align: center;
+  width: 90%;
+  margin 0 0 0 0;
+}
+
+.data_b {
+  background: #afa;
+  border-radius: 8px;
+  border: 6px solid #0b0;
+  padding-top: 6px;
+  padding-bottom: 8px;
+  width: 100%;
+}

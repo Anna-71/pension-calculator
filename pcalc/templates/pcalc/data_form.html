@@ -1,0 +1,158 @@
+﻿{% load static %}
+<html lang="ru">
+
+<head>
+   <meta charset="chcp 1251">
+   <title> Пенсионный калькулятор </title>
+
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{% static 'css/pcalc.css' %}">
+</head>
+
+<body>
+<header>  
+<h1 class="hform"> Пенсионный калькулятор</h1>
+<div class = "pic">
+<img  src="{% static 'images/money.png'%}" width="120" height="120"> 
+</div>
+<div class="par" width = 100%> Наше приложение может рассчитать Вашу пенсию на основании предоставленных Вами данных. </div>
+<div class="par" width = 100%> Расчет пенсии выполняется корректно, если год выхода на пенсию не ранее 2020. </div>
+</header>      
+
+<form action ="{% url 'calc' %}"  method="POST">   
+   {% csrf_token %}
+  <div class="data_b container">  
+        <div class="form-row">
+             <div class="col-md-1">  <label class="lab"> Укажите Ваш пол:   </label> </div>
+             <div class="col-md-1">  {{form.sex}}  </div>
+             <div class="col-md-3">  <label class="lab"> Введите год Вашего рождения:   </label>  </div>
+             <div class="col-md-1">  {{form.year_born}}      </div>
+             <div class="col-md-4">  <label class="lab"> Введите год начала Вашей трудовой деятельности:  </label>   </div>
+             <div class="col-md-1">  {{form.year_begin}}      </div>
+        </div>
+   </div>
+
+
+<div class= "data_b container">      
+         <div class="form-row">
+            <div class="col-md-4">   <h4> Период до 2001 года </h4>  </div>
+           <div class="text col-md-8">
+                   Если Вам больше 40 лет, то у вас, вероятно, есть трудовой стаж за период до 2001 года. 
+                   Чтобы его учесть,  заполните, пожалуйста, данные о вашем трудовом стаже и среднем заработке в этом периоде 
+                   (данные о среднем заработке нужны либо за любые 5 лет, либо за последние 2 года, 
+	  если Вы заполните оба варианта, то программа выберет лучший из них):
+            </div>
+       </div>
+       <div class="form-row">
+            <div class="col-md-4">  <label class="lab" > Ваш стаж до 2001 года: </label>   </div>   
+            <div class="col-md-2">    {{form.ts01}}        </div>   
+            <div class="col-md-4">  <label class="lab"> Ваш стаж до 1991 года:   </label>  </div>
+            <div class="col-md-2">       {{form.ts91}}     </div>
+       </div>
+           <div class="form-row">
+           <div class="col-md-4">  <label class="lab"> Ваш средний заработок за любые 5 лет с 1985 по 1991 годы:   </label> </div>
+           <div class="col-md-2">  {{form.szar5}} </div>
+           <div class="col-md-4">   <label class="lab">  или за 2000 -2001 годы: </label>  </div> 
+           <div class="col-md-2">   {{form.szar2}} </div> 
+           </div>     
+       </div>      
+</div>
+<div class= "data_b container">      
+       <div class="form-row">
+            <div class="col-md-4">   <h4> Период c 2002 по 2014 год </h4>   </div>
+            <div class="text col-md-8">   Если Вам больше 30 лет, то у вас, вероятно, есть трудовой стаж за период до 2014 года. 
+                                                      Чтобы его учесть,  заполните, пожалуйста, информацию о количестве лет 
+                                                      и средней заработной плате в этот период.   Ваш трудовой вклад в периоды до 2015 год будет конвертирован 
+			 в пенсионные баллы.
+               </div>
+       </div>
+       <div class="form-row">
+          <div class="col-md-4"> <label> Укажите Ваш стаж до 2014 года: </label>  </div>
+          <div class="col-md-2"> {{form.ts14}}  </div>
+          <div class="col-md-4">  <label>Укажите Ваш средний заработок за этот период: </label>  </div>
+          <div class="col-md-2">  {{form.szar14}}  </div>
+        </div>     
+</div>     
+<div class= "data_b container">      
+         <div class="form-row">   
+              <div class="col-md-4"> <h4> Период c 2015 года до выхода на пенсию</h4>   </div>
+              <div class="text col-md-8"> Для начисления гражданину пенсии на момент ее расчета должныт быть выполнены три условия: 
+                                                     1) отработан минимальный стаж (с 2024 года составляет 15 лет);  
+                                                     2) набрано минимальное количество баллов (с 2024 года 30 баллов); 
+                                                     3) достигнут пенсионный возраст (с 2027 года 65/60 лет для мужчин и женщин соответственно). 
+		                 Для начисления пенсии учитывается только страховой стаж (то есть продолжительность и величина уплаты страховых взносов).
+             </div>
+        </div>                                        
+        <div class="form-row">
+            <div class="col-md-10">  <label> Укажите Ваш средний ежемесячный заработок за этот период, если вы работали/планируете работать наемным работником:  </label>  </div>
+            <div class="col-md-2">{{form.szar15}}   </div>
+        </div>      
+       <div class="form-row">
+            <div class="col-md-12">  Если вы работаете или планируете работать в качестве самозанятого гражданина, то укажите следующие данные:  </div>
+       </div> 
+       <div class="form-row"> 
+             <div class="col-md-4">  <label> Укажите, сколько лет Вы планируете работать как самозанятый гражданин:  </label>   </div>
+             <div class="col-md-2">   {{form.sam}} </div>
+             <div class="col-md-4">  <label> Укажите, какую сумму ежегодных страховых взносов Вы планируете отчислять как самозанятый гражданин:  </label>   </div>  
+             <div class="col-md-2">  {{form.ssam}} </div> 
+      </div>           
+</div>
+
+<div class= "data_b container">     
+        <div class="form-row">   
+              <div class="col-md-4"> <h4> Нетрудовые социально значимые периоды</h4>   </div>
+              <div class="text  col-md-8"> В трудовой/страховой стаж входят периоды, когда гражданин не работал по причине осуществления им 
+	                                     социально значимой деятельности. Сюда относятся годы прохождения службы по призыву, время ухода за ребенком до 1,5 лет, 
+                                                       уход за инвалидами 1-ой группы или гражданами старше 80 лет.: 
+              </div>
+       </div>
+       <div class="form-row">
+             <div class="col-md-10">  <label> Укажите, сколько лет Вы проходили или планируете проходить службу по призыву:    </div>
+             <div class="col-md-2"> {{form.army}}  </div>
+       </div>    
+       <div class="form-row">      
+                 <div class="col-md-10"> <label> Укажите, сколько детей Вы имеете/планируете иметь: </lable> </div> 
+                 <div class="col-md-2"> {{form.child}}    </div>
+                 <div class="col-md-10"><label> Укажите сколько лет Вы осуществляли уход за индалидами 1 группы,
+                                                         ребёнком-инвалидом, лицами старше 80 лет и при этом не работали: </lable>  </div>  
+                 <div class="col-md-2"> {{form.other}}  </div>
+        </div> 
+ </div> 
+      
+<div class= "data_b container">     
+        <div class="form-row">   
+              <div class="col-md-4"> <h4> Льготные периоды</h4>   </div>
+              <div class="text  col-md-8"> Для граждан отработавших необходимый срок в условиях Крайнего Севера (надбавка к пенсии) 
+	                                     или на вредных производствах (более ранний срок выхода на пенсию)  пенсия начисляется на льготных условиях.   
+              </div>
+        </div>
+      <div class="form-row">
+             <div class="col-md-10">     <label> Укажите, сколько лет Вы работали в районах Крайнего Севера:   </lable> </div>
+             <div class="col-md-2">     {{form.stn1}}     </div>
+      </div>
+       <div class="form-row">     
+             <div class="col-md-10">   <label> Укажите, сколько лет Вы работали в районах, приравненных к районам Крайнего Севера:   </lable>   </div>  
+             <div class="col-md-2">     {{form.stn2}} </div>
+     </div>
+  <div class="form-row">     
+             <div class="col-md-10">   <label> Укажите, сколько лет Вы работали в сельском хозяйстве:   </lable>   </div>  
+             <div class="col-md-2">     {{form.sts}} </div>
+     </div>     
+<div class="form-row">
+            <div class="col-md-10">      <label> Укажите, сколько лет Вы работали на производствах, включенных в первый список:   </lable> </div>
+            <div class="col-md-2"> {{form.stl1}}</div>
+      </div>
+   <div class="form-row">     
+            <div class="col-md-10">        <label> Укажите, сколько лет Вы работали на производствах, включенных во второй список:   </lable>   </div>
+            <div class="col-md-2">  {{form.stl2}} </div>
+   </div>     
+        
+ </div>
+<button  class="btn" type="Submit" name="submit"  value="Submit" >Выполнить расчет</button>
+   
+</form>       
+
+</body>
+</html>
